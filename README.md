@@ -1,6 +1,8 @@
 
 # EVALUACIÓN TÉCNICA NUXIBA #
 
+# Diaz Zamora Erick 23-Marzo-2024#
+
 Prueba: **DESARROLLADOR JR**
 
 Deadline: **1 día**
