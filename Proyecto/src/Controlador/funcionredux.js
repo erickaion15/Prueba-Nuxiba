@@ -1,4 +1,4 @@
-import { SET_USERS, SET_USER_POSTS, SET_USER_TODOS } from './actions';
+import { SET_USERS, SET_USER_POSTS, SET_USER_TODOS, SET_USER_TODOS_ORDENADO } from './actions';
 
 const initialState = {
   users: [],
@@ -8,7 +8,6 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-
     case SET_USERS:
       console.log("Se han recibido los SET_USERS:", action.payload);
       return {
@@ -21,7 +20,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         userPosts: action.payload,
-      }
+      };
 
     case SET_USER_TODOS:
       console.log("Se han recibido los SET_USER_TODOS:", action.payload);
@@ -29,6 +28,16 @@ const userReducer = (state = initialState, action) => {
         ...state,
         userTodos: action.payload,
       };
+
+    case SET_USER_TODOS_ORDENADO:
+      console.log("Se han recibido los SET_USER_TODOS_ORDENADO:", action.payload);
+      // Ordenar los todos por id de mayor a menor
+      const todosOrdenados = action.payload.slice().sort((a, b) => b.id - a.id);
+      return {
+        ...state,
+        userTodos: todosOrdenados,
+      };
+
     default:
       return state;
   }

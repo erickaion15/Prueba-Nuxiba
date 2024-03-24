@@ -34,8 +34,7 @@ const UsuarioController = {
       if (!response.ok) {
         throw new Error('Error al obtener los posts del usuario');
       }
-  
-      // Convertir la respuesta a formato JSON
+
       const posts = await response.json();
   
       // Para cada post, obtener los comentarios asociados
@@ -56,16 +55,19 @@ const UsuarioController = {
     }
   },
   
-  //Función para obtener a los usuarios 
-  getUserTodos: async(userId) => {
-    try{
+  //Función para obtener a "todos" de los usuarios 
+  getUserTodos: async (userId) => {
+    try {
       const response = await fetch(`${API_URL}/todos?userId=${userId}`);
-      if(!response.ok){
+      if (!response.ok) {
         throw new Error('Error al obtener todos los posts del usuario');
       }
-      return response;
-    } catch(error){
-      console.error('Error no se pudo obtener todos los post:', error);
+  
+      const todos = await response.json();
+      return todos.sort((a, b) => b.id - a.id);
+    } catch (error) {
+      console.error('Error al obtener todos los posts del usuario:', error);
+      return [];
     }
   }
 };
